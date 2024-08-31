@@ -10,14 +10,12 @@ async function buscar() {
     }
 
 
-const tableBody = document.querySelector('#data-table tbody');
+const tableBody = document.querySelector('#tabela tbody');
 tableBody.innerHTML = '';
 
 
 data.forEach(tabela => {
     const tr = document.createElement('tr');
-
-
 
     const tdPoltrona = document.createElement('td');
     tdPoltrona.textContent = tabela.poltrona;
@@ -26,10 +24,6 @@ data.forEach(tabela => {
     const tdNome = document.createElement('td');
     tdNome.textContent = tabela.nome;
     tr.appendChild(tdNome);
-
-    const tdstatus = document.createElement('td');
-    tdstatus.textContent = tabela.status;
-    tr.appendChild(tdstatus);
 
     tableBody.appendChild(tr);
 
