@@ -3,7 +3,7 @@ const supabase = createClient('https://sqpmnvfdauytmrrtdfoc.supabase.co', 'eyJhb
 
 
 async function buscar() {
-    const { data, error } = await supabase.from('cinema').select('*');
+    const { data, error } = await supabase.from('cinema').select('*').eq('status',1).order('poltrona', { ascending: true });
     if (error) {
         console.error('Erro ao buscar dados:', error);
         return;
@@ -17,9 +17,7 @@ tableBody.innerHTML = '';
 data.forEach(tabela => {
     const tr = document.createElement('tr');
 
-    const tdID = document.createElement('td');
-    tdID.textContent = tabela.ID;
-    tr.appendChild(tdID);
+
 
     const tdPoltrona = document.createElement('td');
     tdPoltrona.textContent = tabela.poltrona;
