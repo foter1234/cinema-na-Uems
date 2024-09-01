@@ -7,10 +7,12 @@
 </head>
 <body>
     <h2>cadastro de evento</h2>
-    <div class="showcase">
-        <form  id="cadastro"  method="post">  
+    <div id="showcase" class="showcase">
+        <form  id="cadastro" method="post">  
+        <label  style="color: white;">id</label>
+        <input type="text" name="id" id="id" placeholder="id"/><br><br>
           <label  style="color: white;">Nome do evento</label>
-          <input type="text" name="nome" id="nome" placeholder="Nome"/><br><br>
+          <input type="text" name="nome" id="nome" placeholder="nome"/><br><br>
           <label  style="color: white;">data do evento</label>
           <input type="date" name="data" id="data" placeholder="data"/><br><br>      
           <label  style="color: white;">hora do evento</label>
@@ -21,6 +23,7 @@
     
       </form>    
     <h2>apagar dados</h2>
+    <script type="module" src="/src/adm.js"></script>
 
 </body>
 </html>
