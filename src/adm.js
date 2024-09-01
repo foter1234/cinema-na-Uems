@@ -5,20 +5,19 @@ async function checkAuth() {
     try {
       const response = await fetch('http://localhost:3000/verify-token', {
         method: 'GET',
-        credentials: 'include' // Inclua cookies na solicitação
+        credentials: 'include' 
       });
   
       if (response.ok) {
         // Token válido, mostre o conteúdo
         document.getElementById('showcase').style.display = 'block';
       } else {
-        // Token inválido ou não presente, redirecione para login
-        window.location.href = '/index.html'; // Redireciona para a página de login
+        window.location.href = '/index.html'; 
       }
     } catch (error) {
       console.error('Error:', error);
-      // Se houver um erro, redirecione para a página de login
-      window.location.href = '/index.html'; // Redireciona para a página de login
+      // Se houver um erro redireciona para a página de login
+      window.location.href = '/index.html'; 
     }
   }
   checkAuth();

@@ -12,7 +12,7 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
-const SECRET_KEY = 'your-secret-key';
+const SECRET_KEY = '1234567';
 
 app.post('/generate-token', (req, res) => {
   const { username } = req.body;
