@@ -60,6 +60,62 @@ data.forEach(tabela => {
 });
 }
 
+async function limparStatus() {
+  const { data, error } = await supabase
+      .from('cinema')
+      .update({ status: 0 })
+      .eq('status', 1);//onde é equivalente a 1
 
+  if (error) {
+      console.error('Erro ao atualizar status:', error);
+  } else {
+      console.log('Status atualizado:', data);
+  }
+}
+
+async function limparNome() {
+  const { data, error } = await supabase.from('cinema').update({ nome: '' })
+      .neq('nome', '');//onde nome não é equivalente a ''
+
+  if (error) {
+      console.error('Erro ao atualizar nome:', error);
+  } else {
+      console.log('Nome atualizado:', data);
+  }
+}
+
+async function limparTelefone() {
+  const { data, error } = await supabase.from('cinema').update({ telefone: '' })
+      .neq('telefone', '');//onde telefone não é equivalente a ''
+
+  if (error) {
+      console.error('Erro ao atualizar telefone:', error);
+  } else {
+      console.log('Telefone atualizado:', data);
+  }
+}
+
+
+async function limparEventoId() {
+  const { data, error } = await supabase.from('cinema').update({ evento_id: null })
+      .not('evento_id', 'is', null); // onde não for igual a null 
+
+
+  if (error) {
+      console.error('Erro ao atualizar evento_id:', error);
+  } else {
+      console.log('Evento_id atualizado:', data);
+  }
+}
+
+
+async function limparTabela() {
+  await limparStatus();
+  await limparNome();
+  await limparTelefone();
+  await limparEventoId();
+}
+
+document.getElementById('resetarTabela').addEventListener('click', limparTabela);
 
 buscar();
