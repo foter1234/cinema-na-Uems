@@ -11,10 +11,7 @@
     <h1 style="color: #444451;">Cine UEMS</h1>
     <div class="movie-container">
       <label> Selecione um filme:</label>
-      <select id="movie">
-        <option value="0">A volta de quem não foi</option>
-        <option value="0">As longas tranças de um careca</option>
-      </select>
+      <select id="filme"></select>
     </div>
     
     <ul class="showcase">
@@ -198,7 +195,7 @@
     <h2>Atualizar Status</h2>
 
     <div class="showcase">
-    <form  id="update-form"  method="post">  
+    <form  id="atualizar"  method="post">  
       <label  style="color: white;">Nome</label>
       <input type="text" name="nome" id="nome" placeholder="Nome"/><br><br>
       <label  style="color: white;">Telefone</label>
@@ -206,15 +203,15 @@
       <label  style="color: white;">Número da poltrona</label>
       <input type="text" name="poltrona" id="polt" placeholder="Poltrona"/><br><br>
         
+      <label >evento selecionado:</label>
+      <input type="text" id="eventos" readonly><br/>
+
       <button type="submit">ENVIAR</button>
 
 
   </form>    
 
-  <a href="listagem.html">Listagem</a>
 </div>
-
-
     <script type="module" src="/src/main.js"></script>
 
 </body>

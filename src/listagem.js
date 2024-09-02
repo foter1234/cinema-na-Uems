@@ -23,7 +23,10 @@ async function checkAuth() {
   checkAuth();
 
 async function buscar() {
-    const { data, error } = await supabase.from('cinema').select('*').eq('status',1).order('poltrona', { ascending: true });
+    const { data, error } = await supabase.from('cinema').
+    select('poltrona,nome, telefone, eventos(nome)').
+    eq('status',1).
+    order('poltrona', { ascending: true });
     if (error) {
         console.error('Erro ao buscar dados:', error);
         return;
@@ -45,8 +48,18 @@ data.forEach(tabela => {
     tdNome.textContent = tabela.nome;
     tr.appendChild(tdNome);
 
+    const tdTelefone = document.createElement('td');
+    tdTelefone.textContent = tabela.telefone;
+    tr.appendChild(tdTelefone);
+
+    const tdEvento = document.createElement('td');
+    tdEvento.textContent = tabela.eventos ? tabela.eventos.nome : 'N/A';
+    tr.appendChild(tdEvento);
+
     tableBody.appendChild(tr);
 });
 }
+
+
 
 buscar();

@@ -3,8 +3,8 @@ const supabase = createClient('https://sqpmnvfdauytmrrtdfoc.supabase.co', 'eyJhb
 
 
 
-async function atualizar(id,nome,telefone, Status) {
-    const { data, error } = await supabase.from('cinema').update({ status: Status, nome:nome,telefone:telefone }).eq('id', id);
+async function atualizar(id,nome,telefone, Status, evento) {
+    const { data, error } = await supabase.from('cinema').update({ status: Status, nome:nome,telefone:telefone, evento_id: evento }).eq('id', id);
 
     if (error) {
         console.error('Erro ao atualizar status:', error);
@@ -12,15 +12,15 @@ async function atualizar(id,nome,telefone, Status) {
     }
 
     console.log('Status atualizado com sucesso:', data);
-
 }
 
 
-document.getElementById('update-form').addEventListener('submit', async (e) => {
+document.getElementById('atualizar').addEventListener('submit', async (e) => {
     e.preventDefault();
     const id = document.getElementById('polt').value;
     const nome = document.getElementById('nome').value;
     const telefone = document.getElementById('telefone').value;
+    const evento = document.getElementById('eventos').value;
 
     const statusOcupado = 1;
     const { data, error } = await supabase.from('cinema').select('status').eq('id', id).single();
@@ -33,12 +33,44 @@ document.getElementById('update-form').addEventListener('submit', async (e) => {
 
     
     if(valstatus == 0){
-    await atualizar(id,nome, telefone, statusOcupado);
+    await atualizar(id,nome, telefone, statusOcupado, evento);
 
     }else if(valstatus == 1){
         alert("Não é possivel, pois está ocupada");
     }
     
 });
+
+document.getElementById('filme').addEventListener('change', function() {
+    var selectedValue = this.value;
+    document.getElementById('eventos').value = selectedValue;
+  });
+
+
+async function eventos() {
+    const { data, error } = await supabase.from('eventos').select('id, nome');
+    if (error) {
+        console.error('Erro ao buscar dados:', error);
+        return;
+    }
+
+
+const select = document.querySelector('#filme');
+select.innerHTML = '';
+
+
+data.forEach((evento, index) => {
+  //  const op = document.createElement('option');
+    const nome = document.createElement('option');
+    nome.value = evento.id;
+    nome.textContent = `${index + 1}. ${evento.nome}`;
+   // op.appendChild(nome);
+
+
+    select.appendChild(nome);
+});
+}
+
+eventos();
 
 
