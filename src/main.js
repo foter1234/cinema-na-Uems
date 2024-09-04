@@ -71,6 +71,26 @@ data.forEach((evento, index) => {
 });
 }
 
+
+window.onload = async function() {
+    const { data, error } = await supabase
+        .from('cinema')
+        .select('id, status');
+
+    if (error) {
+        console.error('Erro ao buscar os status das poltronas:', error);
+        return;
+    }
+
+    data.forEach(poltrona => {
+        const button = document.getElementById(poltrona.id);
+        if (poltrona.status === 1) {
+            //muda a cor para vermelho
+            button.disabled = true;
+            button.style.backgroundColor = 'red';
+        }
+    });
+};
 eventos();
 
 
