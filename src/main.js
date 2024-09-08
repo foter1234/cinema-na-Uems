@@ -39,6 +39,10 @@ document.getElementById('atualizar').addEventListener('submit', async (e) => {
     }else if(valstatus == 1){
         alert("Não é possivel, pois está ocupada");
     }
+
+    document.getElementById('nome').value = '';
+    document.getElementById('telefone').value = '';
+    document.getElementById('polt').value = '';
     
 });
 
