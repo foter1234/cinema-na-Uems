@@ -1,7 +1,7 @@
 // Função para verificar o token
 async function checkAuth() {
     try {
-      const response = await fetch('http://localhost:3000/verify-token', {
+      const response = await fetch('https://servidor-omega.vercel.app/verify-token', {
         method: 'GET',
         credentials: 'include' 
       });
